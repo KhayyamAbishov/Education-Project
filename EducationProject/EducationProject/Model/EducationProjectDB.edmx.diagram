@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d92d864d8204ec88391802ddfc66ff9" Name="Diagram1">
+        <EntityTypeShape EntityType="EducationProjectDbModel.Group" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.GroupCategory" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.GroupCategoryType" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Mentor" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Program" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Student" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Task" Width="1.5" PointX="9.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.TaskCategory" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Teacher" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.User" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.UserType" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_48" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_51" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_54" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_57" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_80" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_75" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_110" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_89" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_132" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_129" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_86" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -17,7 +17,8 @@ namespace EducationProject.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
-            this.Tasks = new HashSet<Task>();
+            this.AssignTasks = new HashSet<AssignTask>();
+            this.Transcripts = new HashSet<Transcript>();
         }
     
         public int StudentId { get; set; }
@@ -28,11 +29,13 @@ namespace EducationProject.Model
         public string StudentEmail { get; set; }
         public string StudentPhone { get; set; }
         public Nullable<System.DateTime> StudentRegistrationDate { get; set; }
-        public string StudentBio { get; set; }
         public string StudentPhoto { get; set; }
+        public string StudentBio { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignTask> AssignTasks { get; set; }
         public virtual Group Group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Transcript> Transcripts { get; set; }
     }
 }

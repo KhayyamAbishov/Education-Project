@@ -4,17 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EducationProjectDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EducationProjectDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AssignTask">
+          <Key>
+            <PropertyRef Name="AssignTaskId" />
+          </Key>
+          <Property Name="AssignTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
           <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="MentorId" Type="int" Nullable="false" />
           <Property Name="TeacherId" Type="int" Nullable="false" />
           <Property Name="GroupCategoryId" Type="int" Nullable="false" />
-          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GroupStartDate" Type="date" />
         </EntityType>
         <EntityType Name="GroupCategory">
@@ -34,12 +41,21 @@
           <Property Name="ProgramCategoryTypeStartTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="ProgramCategoryTypeEndTime" Type="time" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="Library">
+          <Key>
+            <PropertyRef Name="LibraryId" />
+          </Key>
+          <Property Name="LibraryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LibraryItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LibraryItemUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LibraryItemType" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Mentor">
           <Key>
             <PropertyRef Name="MentorId" />
           </Key>
           <Property Name="MentorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="MentorName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MentorSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MentorEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -47,13 +63,19 @@
           <Property Name="MentorBio" Type="nvarchar(max)" />
           <Property Name="MentorPhoto" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Program">
+        <EntityType Name="Message">
           <Key>
-            <PropertyRef Name="ProgramId" />
+            <PropertyRef Name="MessageId" />
           </Key>
-          <Property Name="ProgramId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProgramName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProgramDuration" Type="int" />
+          <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="PackageId" />
+          </Key>
+          <Property Name="PackageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PackageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PackageDuration" Type="int" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -67,8 +89,8 @@
           <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" />
           <Property Name="StudentPhone" Type="nvarchar" MaxLength="50" />
           <Property Name="StudentRegistrationDate" Type="datetime" />
-          <Property Name="StudentBio" Type="nvarchar(max)" />
           <Property Name="StudentPhoto" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentBio" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -76,13 +98,11 @@
           </Key>
           <Property Name="TaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TaskName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TaskUrl" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskUrl" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TaskStartDate" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TaskDuration" Type="int" Nullable="false" />
-          <Property Name="TaskPoint" Type="int" Nullable="false" />
           <Property Name="TaskDetails" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TaskCategoryId" Type="int" Nullable="false" />
-          <Property Name="StudentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TaskCategory">
           <Key>
@@ -96,13 +116,22 @@
             <PropertyRef Name="TeacherId" />
           </Key>
           <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="TeacherName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TeacherSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TeacherEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TeacherPhone" Type="nvarchar" MaxLength="50" />
-          <Property Name="TeacherBio" Type="nvarchar(max)" />
+          <Property Name="TeacherBio" Type="nvarchar" MaxLength="50" />
           <Property Name="TeacherPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transcript">
+          <Key>
+            <PropertyRef Name="TranscriptId" />
+          </Key>
+          <Property Name="TranscriptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="TaskPoint" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -119,14 +148,14 @@
           <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_110">
-          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Mentor" Type="Self.Mentor" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Program">
-              <PropertyRef Name="ProgramId" />
+            <Principal Role="Package">
+              <PropertyRef Name="PackageId" />
             </Principal>
             <Dependent Role="Mentor">
-              <PropertyRef Name="ProgramId" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,27 +171,63 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_132">
+        <Association Name="FK_141">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="AssignTask" Type="Self.AssignTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="AssignTask">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_144">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <End Role="AssignTask" Type="Self.AssignTask" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="StudentId" />
             </Principal>
-            <Dependent Role="Task">
+            <Dependent Role="AssignTask">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_156">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Transcript" Type="Self.Transcript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Transcript">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_159">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Transcript" Type="Self.Transcript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Transcript">
               <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_48">
-          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Group" Type="Self.Group" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Program">
-              <PropertyRef Name="ProgramId" />
+            <Principal Role="Package">
+              <PropertyRef Name="PackageId" />
             </Principal>
             <Dependent Role="Group">
-              <PropertyRef Name="ProgramId" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -239,43 +304,59 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_89">
-          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Program">
-              <PropertyRef Name="ProgramId" />
+            <Principal Role="Package">
+              <PropertyRef Name="PackageId" />
             </Principal>
             <Dependent Role="Teacher">
-              <PropertyRef Name="ProgramId" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EducationProjectDbModelStoreContainer">
+          <EntitySet Name="AssignTask" EntityType="Self.AssignTask" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupCategory" EntityType="Self.GroupCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupCategoryType" EntityType="Self.GroupCategoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Library" EntityType="Self.Library" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mentor" EntityType="Self.Mentor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaskCategory" EntityType="Self.TaskCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transcript" EntityType="Self.Transcript" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_110" Association="Self.FK_110">
-            <End Role="Program" EntitySet="Program" />
+            <End Role="Package" EntitySet="Package" />
             <End Role="Mentor" EntitySet="Mentor" />
           </AssociationSet>
           <AssociationSet Name="FK_129" Association="Self.FK_129">
             <End Role="TaskCategory" EntitySet="TaskCategory" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
-          <AssociationSet Name="FK_132" Association="Self.FK_132">
-            <End Role="Student" EntitySet="Student" />
+          <AssociationSet Name="FK_141" Association="Self.FK_141">
             <End Role="Task" EntitySet="Task" />
+            <End Role="AssignTask" EntitySet="AssignTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_144" Association="Self.FK_144">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="AssignTask" EntitySet="AssignTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_156" Association="Self.FK_156">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="Transcript" EntitySet="Transcript" />
+          </AssociationSet>
+          <AssociationSet Name="FK_159" Association="Self.FK_159">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Transcript" EntitySet="Transcript" />
           </AssociationSet>
           <AssociationSet Name="FK_48" Association="Self.FK_48">
-            <End Role="Program" EntitySet="Program" />
+            <End Role="Package" EntitySet="Package" />
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
           <AssociationSet Name="FK_51" Association="Self.FK_51">
@@ -303,27 +384,35 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_89" Association="Self.FK_89">
-            <End Role="Program" EntitySet="Program" />
+            <End Role="Package" EntitySet="Package" />
             <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EducationProjectDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AssignTask">
+          <Key>
+            <PropertyRef Name="AssignTaskId" />
+          </Key>
+          <Property Name="AssignTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_141" FromRole="AssignTask" ToRole="Task" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_144" FromRole="AssignTask" ToRole="Student" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
           <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="PackageId" Type="Int32" Nullable="false" />
           <Property Name="MentorId" Type="Int32" Nullable="false" />
           <Property Name="TeacherId" Type="Int32" Nullable="false" />
           <Property Name="GroupCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GroupStartDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Program" Relationship="Self.FK_48" FromRole="Group" ToRole="Program" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_48" FromRole="Group" ToRole="Package" />
           <NavigationProperty Name="Students" Relationship="Self.FK_51" FromRole="Group" ToRole="Student" />
           <NavigationProperty Name="Mentor" Relationship="Self.FK_54" FromRole="Group" ToRole="Mentor" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_57" FromRole="Group" ToRole="Teacher" />
@@ -349,12 +438,21 @@
           <Property Name="ProgramCategoryTypeEndTime" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="GroupCategories" Relationship="Self.FK_75" FromRole="GroupCategoryType" ToRole="GroupCategory" />
         </EntityType>
+        <EntityType Name="Library">
+          <Key>
+            <PropertyRef Name="LibraryId" />
+          </Key>
+          <Property Name="LibraryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibraryItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LibraryItemUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LibraryItemType" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="Mentor">
           <Key>
             <PropertyRef Name="MentorId" />
           </Key>
           <Property Name="MentorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="PackageId" Type="Int32" Nullable="false" />
           <Property Name="MentorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MentorSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MentorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -362,18 +460,24 @@
           <Property Name="MentorBio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MentorPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_54" FromRole="Mentor" ToRole="Group" />
-          <NavigationProperty Name="Program" Relationship="Self.FK_110" FromRole="Mentor" ToRole="Program" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_110" FromRole="Mentor" ToRole="Package" />
         </EntityType>
-        <EntityType Name="Program">
+        <EntityType Name="Message">
           <Key>
-            <PropertyRef Name="ProgramId" />
+            <PropertyRef Name="MessageId" />
           </Key>
-          <Property Name="ProgramId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProgramName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProgramDuration" Type="Int32" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_48" FromRole="Program" ToRole="Group" />
-          <NavigationProperty Name="Mentors" Relationship="Self.FK_110" FromRole="Program" ToRole="Mentor" />
-          <NavigationProperty Name="Teachers" Relationship="Self.FK_89" FromRole="Program" ToRole="Teacher" />
+          <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="PackageId" />
+          </Key>
+          <Property Name="PackageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PackageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PackageDuration" Type="Int32" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_48" FromRole="Package" ToRole="Group" />
+          <NavigationProperty Name="Mentors" Relationship="Self.FK_110" FromRole="Package" ToRole="Mentor" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_89" FromRole="Package" ToRole="Teacher" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -387,10 +491,11 @@
           <Property Name="StudentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StudentPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StudentRegistrationDate" Type="DateTime" Precision="3" />
-          <Property Name="StudentBio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StudentPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentBio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AssignTasks" Relationship="Self.FK_144" FromRole="Student" ToRole="AssignTask" />
           <NavigationProperty Name="Group" Relationship="Self.FK_51" FromRole="Student" ToRole="Group" />
-          <NavigationProperty Name="Tasks" Relationship="Self.FK_132" FromRole="Student" ToRole="Task" />
+          <NavigationProperty Name="Transcripts" Relationship="Self.FK_159" FromRole="Student" ToRole="Transcript" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -398,15 +503,14 @@
           </Key>
           <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TaskUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TaskStartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TaskDuration" Type="Int32" Nullable="false" />
-          <Property Name="TaskPoint" Type="Int32" Nullable="false" />
           <Property Name="TaskDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TaskCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="StudentId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_132" FromRole="Task" ToRole="Student" />
+          <NavigationProperty Name="AssignTasks" Relationship="Self.FK_141" FromRole="Task" ToRole="AssignTask" />
           <NavigationProperty Name="TaskCategory" Relationship="Self.FK_129" FromRole="Task" ToRole="TaskCategory" />
+          <NavigationProperty Name="Transcripts" Relationship="Self.FK_156" FromRole="Task" ToRole="Transcript" />
         </EntityType>
         <EntityType Name="TaskCategory">
           <Key>
@@ -421,15 +525,26 @@
             <PropertyRef Name="TeacherId" />
           </Key>
           <Property Name="TeacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="PackageId" Type="Int32" Nullable="false" />
           <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TeacherBio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherBio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TeacherPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_57" FromRole="Teacher" ToRole="Group" />
-          <NavigationProperty Name="Program" Relationship="Self.FK_89" FromRole="Teacher" ToRole="Program" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_89" FromRole="Teacher" ToRole="Package" />
+        </EntityType>
+        <EntityType Name="Transcript">
+          <Key>
+            <PropertyRef Name="TranscriptId" />
+          </Key>
+          <Property Name="TranscriptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="TaskPoint" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_159" FromRole="Transcript" ToRole="Student" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_156" FromRole="Transcript" ToRole="Task" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -447,15 +562,39 @@
           <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_86" FromRole="UserType" ToRole="User" />
         </EntityType>
+        <Association Name="FK_141">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="AssignTask" Type="Self.AssignTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="AssignTask">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_144">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="AssignTask" Type="Self.AssignTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="AssignTask">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_48">
-          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Group" Type="Self.Group" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Program">
-              <PropertyRef Name="ProgramId" />
+            <Principal Role="Package">
+              <PropertyRef Name="PackageId" />
             </Principal>
             <Dependent Role="Group">
-              <PropertyRef Name="ProgramId" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -520,37 +659,37 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_110">
-          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Mentor" Type="Self.Mentor" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Program">
-              <PropertyRef Name="ProgramId" />
+            <Principal Role="Package">
+              <PropertyRef Name="PackageId" />
             </Principal>
             <Dependent Role="Mentor">
-              <PropertyRef Name="ProgramId" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_89">
-          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Program">
-              <PropertyRef Name="ProgramId" />
+            <Principal Role="Package">
+              <PropertyRef Name="PackageId" />
             </Principal>
             <Dependent Role="Teacher">
-              <PropertyRef Name="ProgramId" />
+              <PropertyRef Name="PackageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_132">
+        <Association Name="FK_159">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <End Role="Transcript" Type="Self.Transcript" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="StudentId" />
             </Principal>
-            <Dependent Role="Task">
+            <Dependent Role="Transcript">
               <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -567,6 +706,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_156">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="Transcript" Type="Self.Transcript" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Transcript">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_86">
           <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -579,20 +730,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EducationProjectDbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EducationProjectDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AssignTasks" EntityType="Self.AssignTask" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="GroupCategories" EntityType="Self.GroupCategory" />
           <EntitySet Name="GroupCategoryTypes" EntityType="Self.GroupCategoryType" />
+          <EntitySet Name="Libraries" EntityType="Self.Library" />
           <EntitySet Name="Mentors" EntityType="Self.Mentor" />
-          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Packages" EntityType="Self.Package" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
           <EntitySet Name="TaskCategories" EntityType="Self.TaskCategory" />
           <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Transcripts" EntityType="Self.Transcript" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK_141" Association="Self.FK_141">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="AssignTask" EntitySet="AssignTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_144" Association="Self.FK_144">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="AssignTask" EntitySet="AssignTasks" />
+          </AssociationSet>
           <AssociationSet Name="FK_48" Association="Self.FK_48">
-            <End Role="Program" EntitySet="Programs" />
+            <End Role="Package" EntitySet="Packages" />
             <End Role="Group" EntitySet="Groups" />
           </AssociationSet>
           <AssociationSet Name="FK_51" Association="Self.FK_51">
@@ -616,20 +779,24 @@
             <End Role="GroupCategory" EntitySet="GroupCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_110" Association="Self.FK_110">
-            <End Role="Program" EntitySet="Programs" />
+            <End Role="Package" EntitySet="Packages" />
             <End Role="Mentor" EntitySet="Mentors" />
           </AssociationSet>
           <AssociationSet Name="FK_89" Association="Self.FK_89">
-            <End Role="Program" EntitySet="Programs" />
+            <End Role="Package" EntitySet="Packages" />
             <End Role="Teacher" EntitySet="Teachers" />
           </AssociationSet>
-          <AssociationSet Name="FK_132" Association="Self.FK_132">
+          <AssociationSet Name="FK_159" Association="Self.FK_159">
             <End Role="Student" EntitySet="Students" />
-            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Transcript" EntitySet="Transcripts" />
           </AssociationSet>
           <AssociationSet Name="FK_129" Association="Self.FK_129">
             <End Role="TaskCategory" EntitySet="TaskCategories" />
             <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_156" Association="Self.FK_156">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Transcript" EntitySet="Transcripts" />
           </AssociationSet>
           <AssociationSet Name="FK_86" Association="Self.FK_86">
             <End Role="UserType" EntitySet="UserTypes" />
@@ -641,16 +808,24 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EducationProjectDbModelStoreContainer" CdmEntityContainer="EducationProjectDbEntities1">
+        <EntityContainerMapping StorageEntityContainer="EducationProjectDbModelStoreContainer" CdmEntityContainer="EducationProjectDbEntities">
+          <EntitySetMapping Name="AssignTasks">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.AssignTask">
+              <MappingFragment StoreEntitySet="AssignTask">
+                <ScalarProperty Name="AssignTaskId" ColumnName="AssignTaskId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="EducationProjectDbModel.Group">
               <MappingFragment StoreEntitySet="Group">
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
                 <ScalarProperty Name="GroupCategoryId" ColumnName="GroupCategoryId" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="GroupStartDate" ColumnName="GroupStartDate" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -674,11 +849,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Libraries">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.Library">
+              <MappingFragment StoreEntitySet="Library">
+                <ScalarProperty Name="LibraryId" ColumnName="LibraryId" />
+                <ScalarProperty Name="LibraryItemName" ColumnName="LibraryItemName" />
+                <ScalarProperty Name="LibraryItemUrl" ColumnName="LibraryItemUrl" />
+                <ScalarProperty Name="LibraryItemType" ColumnName="LibraryItemType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Mentors">
             <EntityTypeMapping TypeName="EducationProjectDbModel.Mentor">
               <MappingFragment StoreEntitySet="Mentor">
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="MentorName" ColumnName="MentorName" />
                 <ScalarProperty Name="MentorSurname" ColumnName="MentorSurname" />
                 <ScalarProperty Name="MentorEmail" ColumnName="MentorEmail" />
@@ -688,12 +873,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Programs">
-            <EntityTypeMapping TypeName="EducationProjectDbModel.Program">
-              <MappingFragment StoreEntitySet="Program">
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
-                <ScalarProperty Name="ProgramDuration" ColumnName="ProgramDuration" />
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.Package">
+              <MappingFragment StoreEntitySet="Package">
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="PackageDuration" ColumnName="PackageDuration" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -708,8 +900,8 @@
                 <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
                 <ScalarProperty Name="StudentPhone" ColumnName="StudentPhone" />
                 <ScalarProperty Name="StudentRegistrationDate" ColumnName="StudentRegistrationDate" />
-                <ScalarProperty Name="StudentBio" ColumnName="StudentBio" />
                 <ScalarProperty Name="StudentPhoto" ColumnName="StudentPhoto" />
+                <ScalarProperty Name="StudentBio" ColumnName="StudentBio" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -721,10 +913,8 @@
                 <ScalarProperty Name="TaskUrl" ColumnName="TaskUrl" />
                 <ScalarProperty Name="TaskStartDate" ColumnName="TaskStartDate" />
                 <ScalarProperty Name="TaskDuration" ColumnName="TaskDuration" />
-                <ScalarProperty Name="TaskPoint" ColumnName="TaskPoint" />
                 <ScalarProperty Name="TaskDetails" ColumnName="TaskDetails" />
                 <ScalarProperty Name="TaskCategoryId" ColumnName="TaskCategoryId" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -740,13 +930,23 @@
             <EntityTypeMapping TypeName="EducationProjectDbModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
                 <ScalarProperty Name="TeacherSurname" ColumnName="TeacherSurname" />
                 <ScalarProperty Name="TeacherEmail" ColumnName="TeacherEmail" />
                 <ScalarProperty Name="TeacherPhone" ColumnName="TeacherPhone" />
                 <ScalarProperty Name="TeacherBio" ColumnName="TeacherBio" />
                 <ScalarProperty Name="TeacherPhoto" ColumnName="TeacherPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transcripts">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.Transcript">
+              <MappingFragment StoreEntitySet="Transcript">
+                <ScalarProperty Name="TranscriptId" ColumnName="TranscriptId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="TaskPoint" ColumnName="TaskPoint" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

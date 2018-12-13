@@ -14,17 +14,25 @@ namespace EducationProject.Model
     
     public partial class Task
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Task()
+        {
+            this.AssignTasks = new HashSet<AssignTask>();
+            this.Transcripts = new HashSet<Transcript>();
+        }
+    
         public int TaskId { get; set; }
         public string TaskName { get; set; }
         public string TaskUrl { get; set; }
         public string TaskStartDate { get; set; }
         public int TaskDuration { get; set; }
-        public int TaskPoint { get; set; }
         public string TaskDetails { get; set; }
         public int TaskCategoryId { get; set; }
-        public int StudentId { get; set; }
     
-        public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssignTask> AssignTasks { get; set; }
         public virtual TaskCategory TaskCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transcript> Transcripts { get; set; }
     }
 }

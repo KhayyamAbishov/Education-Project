@@ -21,14 +21,13 @@ namespace EducationProject.Model
         }
     
         public int GroupId { get; set; }
-        public int ProgramId { get; set; }
+        public int PackageId { get; set; }
         public int MentorId { get; set; }
         public int TeacherId { get; set; }
         public int GroupCategoryId { get; set; }
-        public string GroupName { get; set; }
         public Nullable<System.DateTime> GroupStartDate { get; set; }
     
-        public virtual Program Program { get; set; }
+        public virtual Package Package { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
         public virtual Mentor Mentor { get; set; }

@@ -21,7 +21,7 @@ namespace EducationProject.Model
         }
     
         public int TeacherId { get; set; }
-        public int ProgramId { get; set; }
+        public int PackageId { get; set; }
         public string TeacherName { get; set; }
         public string TeacherSurname { get; set; }
         public string TeacherEmail { get; set; }
@@ -31,6 +31,6 @@ namespace EducationProject.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }
-        public virtual Program Program { get; set; }
+        public virtual Package Package { get; set; }
     }
 }

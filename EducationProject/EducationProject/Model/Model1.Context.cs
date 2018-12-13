@@ -13,10 +13,10 @@ namespace EducationProject.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EducationProjectDbEntities1 : DbContext
+    public partial class EducationProjectDbEntities : DbContext
     {
-        public EducationProjectDbEntities1()
-            : base("name=EducationProjectDbEntities1")
+        public EducationProjectDbEntities()
+            : base("name=EducationProjectDbEntities")
         {
         }
     
@@ -25,15 +25,19 @@ namespace EducationProject.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AssignTask> AssignTasks { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<GroupCategory> GroupCategories { get; set; }
         public virtual DbSet<GroupCategoryType> GroupCategoryTypes { get; set; }
+        public virtual DbSet<Library> Libraries { get; set; }
         public virtual DbSet<Mentor> Mentors { get; set; }
-        public virtual DbSet<Program> Programs { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TaskCategory> TaskCategories { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<Transcript> Transcripts { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
     }

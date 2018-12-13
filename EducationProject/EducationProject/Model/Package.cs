@@ -12,19 +12,19 @@ namespace EducationProject.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Program
+    public partial class Package
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Program()
+        public Package()
         {
             this.Groups = new HashSet<Group>();
             this.Mentors = new HashSet<Mentor>();
             this.Teachers = new HashSet<Teacher>();
         }
     
-        public int ProgramId { get; set; }
-        public string ProgramName { get; set; }
-        public Nullable<int> ProgramDuration { get; set; }
+        public int PackageId { get; set; }
+        public string PackageName { get; set; }
+        public Nullable<int> PackageDuration { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Group> Groups { get; set; }

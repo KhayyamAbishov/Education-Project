@@ -4,18 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d92d864d8204ec88391802ddfc66ff9" Name="Diagram1">
-        <EntityTypeShape EntityType="EducationProjectDbModel.Group" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+      <Diagram DiagramId="3b5322885dae49fabf7a9d15c900bd68" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="EducationProjectDbModel.AssignTask" Width="1.5" PointX="9.625" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Group" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationProjectDbModel.GroupCategory" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationProjectDbModel.GroupCategoryType" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.Mentor" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.Program" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.Student" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.Task" Width="1.5" PointX="9.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.TaskCategory" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.Teacher" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Library" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Mentor" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Message" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Package" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Student" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Task" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.TaskCategory" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Teacher" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducationProjectDbModel.Transcript" Width="1.5" PointX="11.625" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationProjectDbModel.User" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationProjectDbModel.UserType" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_141" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_144" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_48" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_51" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_54" ManuallyRouted="false" />
@@ -24,8 +30,9 @@
         <AssociationConnector Association="EducationProjectDbModel.FK_75" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_110" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_89" ManuallyRouted="false" />
-        <AssociationConnector Association="EducationProjectDbModel.FK_132" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_159" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_129" ManuallyRouted="false" />
+        <AssociationConnector Association="EducationProjectDbModel.FK_156" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_86" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

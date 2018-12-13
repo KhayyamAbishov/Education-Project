@@ -18,6 +18,7 @@ namespace EducationProject.Model
         public UserType()
         {
             this.Users = new HashSet<User>();
+            this.Logins = new HashSet<Login>();
         }
     
         public int UserTypeId { get; set; }
@@ -25,5 +26,7 @@ namespace EducationProject.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Login> Logins { get; set; }
     }
 }

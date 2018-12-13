@@ -50,6 +50,15 @@
           <Property Name="LibraryItemUrl" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LibraryItemType" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoginPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Mentor">
           <Key>
             <PropertyRef Name="MentorId" />
@@ -315,12 +324,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserType">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EducationProjectDbModelStoreContainer">
           <EntitySet Name="AssignTask" EntityType="Self.AssignTask" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupCategory" EntityType="Self.GroupCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupCategoryType" EntityType="Self.GroupCategoryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Library" EntityType="Self.Library" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mentor" EntityType="Self.Mentor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
@@ -386,6 +408,10 @@
           <AssociationSet Name="FK_89" Association="Self.FK_89">
             <End Role="Package" EntitySet="Package" />
             <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserType" Association="Self.FK_UserType">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="Login" EntitySet="Login" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -561,6 +587,7 @@
           <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_86" FromRole="UserType" ToRole="User" />
+          <NavigationProperty Name="Logins" Relationship="EducationProjectDbModel.FK_UserType" FromRole="UserType" ToRole="Login" />
         </EntityType>
         <Association Name="FK_141">
           <End Role="Task" Type="Self.Task" Multiplicity="1" />
@@ -802,7 +829,34 @@
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Logins" EntityType="EducationProjectDbModel.Login" />
+          <AssociationSet Name="FK_UserType" Association="EducationProjectDbModel.FK_UserType">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserType" Relationship="EducationProjectDbModel.FK_UserType" FromRole="Login" ToRole="UserType" />
+        </EntityType>
+        <Association Name="FK_UserType">
+          <End Type="EducationProjectDbModel.UserType" Role="UserType" Multiplicity="1" />
+          <End Type="EducationProjectDbModel.Login" Role="Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -963,6 +1017,16 @@
               <MappingFragment StoreEntitySet="UserType">
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginEmail" ColumnName="LoginEmail" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

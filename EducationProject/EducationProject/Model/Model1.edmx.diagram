@@ -34,8 +34,6 @@
         <AssociationConnector Association="EducationProjectDbModel.FK_129" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_156" ManuallyRouted="false" />
         <AssociationConnector Association="EducationProjectDbModel.FK_86" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="EducationProjectDbModel.Login" Width="1.5" PointX="8" PointY="13.75" />
-        <AssociationConnector Association="EducationProjectDbModel.FK_UserType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

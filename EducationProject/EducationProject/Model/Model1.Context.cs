@@ -40,6 +40,5 @@ namespace EducationProject.Model
         public virtual DbSet<Transcript> Transcripts { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
-        public virtual DbSet<Login> Logins { get; set; }
     }
 }

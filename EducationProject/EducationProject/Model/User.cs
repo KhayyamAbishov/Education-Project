@@ -15,9 +15,9 @@ namespace EducationProject.Model
     public partial class User
     {
         public int UserId { get; set; }
-        public int UserTypeId { get; set; }
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
+        public int UserTypeId { get; set; }
     
         public virtual UserType UserType { get; set; }
     }

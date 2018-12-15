@@ -13,6 +13,14 @@
           <Property Name="TaskId" Type="int" Nullable="false" />
           <Property Name="StudentId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CategoryType">
+          <Key>
+            <PropertyRef Name="CategorytypeId" />
+          </Key>
+          <Property Name="CategorytypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupCategoryId" Type="int" Nullable="false" />
+          <Property Name="GroupCategoryTypeId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="GroupId" />
@@ -21,7 +29,7 @@
           <Property Name="PackageId" Type="int" Nullable="false" />
           <Property Name="MentorId" Type="int" Nullable="false" />
           <Property Name="TeacherId" Type="int" Nullable="false" />
-          <Property Name="GroupCategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryTypeId" Type="int" Nullable="false" />
           <Property Name="GroupStartDate" Type="date" />
         </EntityType>
         <EntityType Name="GroupCategory">
@@ -29,7 +37,6 @@
             <PropertyRef Name="GroupCategoryId" />
           </Key>
           <Property Name="GroupCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GroupCategoryTypeId" Type="int" Nullable="false" />
           <Property Name="GroupCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="GroupCategoryType">
@@ -269,27 +276,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_75">
-          <End Role="GroupCategoryType" Type="Self.GroupCategoryType" Multiplicity="1" />
-          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GroupCategoryType">
-              <PropertyRef Name="GroupCategoryTypeId" />
-            </Principal>
-            <Dependent Role="GroupCategory">
-              <PropertyRef Name="GroupCategoryTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_80">
-          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="1" />
+          <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="1" />
           <End Role="Group" Type="Self.Group" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="GroupCategory">
-              <PropertyRef Name="GroupCategoryId" />
+            <Principal Role="CategoryType">
+              <PropertyRef Name="CategorytypeId" />
             </Principal>
             <Dependent Role="Group">
-              <PropertyRef Name="GroupCategoryId" />
+              <PropertyRef Name="CategoryTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -317,8 +312,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GCat_CatT">
+          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="1" />
+          <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategory">
+              <PropertyRef Name="GroupCategoryId" />
+            </Principal>
+            <Dependent Role="CategoryType">
+              <PropertyRef Name="GroupCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCatT_CatT">
+          <End Role="GroupCategoryType" Type="Self.GroupCategoryType" Multiplicity="1" />
+          <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategoryType">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Principal>
+            <Dependent Role="CategoryType">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EducationProjectDbModelStoreContainer">
           <EntitySet Name="AssignTask" EntityType="Self.AssignTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryType" EntityType="Self.CategoryType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupCategory" EntityType="Self.GroupCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupCategoryType" EntityType="Self.GroupCategoryType" Schema="dbo" store:Type="Tables" />
@@ -373,12 +393,8 @@
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
-          <AssociationSet Name="FK_75" Association="Self.FK_75">
-            <End Role="GroupCategoryType" EntitySet="GroupCategoryType" />
-            <End Role="GroupCategory" EntitySet="GroupCategory" />
-          </AssociationSet>
           <AssociationSet Name="FK_80" Association="Self.FK_80">
-            <End Role="GroupCategory" EntitySet="GroupCategory" />
+            <End Role="CategoryType" EntitySet="CategoryType" />
             <End Role="Group" EntitySet="Group" />
           </AssociationSet>
           <AssociationSet Name="FK_86" Association="Self.FK_86">
@@ -388,6 +404,14 @@
           <AssociationSet Name="FK_89" Association="Self.FK_89">
             <End Role="Package" EntitySet="Package" />
             <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCat_CatT" Association="Self.FK_GCat_CatT">
+            <End Role="GroupCategory" EntitySet="GroupCategory" />
+            <End Role="CategoryType" EntitySet="CategoryType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCatT_CatT" Association="Self.FK_GCatT_CatT">
+            <End Role="GroupCategoryType" EntitySet="GroupCategoryType" />
+            <End Role="CategoryType" EntitySet="CategoryType" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -404,6 +428,17 @@
           <NavigationProperty Name="Task" Relationship="Self.FK_141" FromRole="AssignTask" ToRole="Task" />
           <NavigationProperty Name="Student" Relationship="Self.FK_144" FromRole="AssignTask" ToRole="Student" />
         </EntityType>
+        <EntityType Name="CategoryType">
+          <Key>
+            <PropertyRef Name="CategorytypeId" />
+          </Key>
+          <Property Name="CategorytypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="GroupCategoryTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_80" FromRole="CategoryType" ToRole="Group" />
+          <NavigationProperty Name="GroupCategory" Relationship="Self.FK_GCat_CatT" FromRole="CategoryType" ToRole="GroupCategory" />
+          <NavigationProperty Name="GroupCategoryType" Relationship="Self.FK_GCatT_CatT" FromRole="CategoryType" ToRole="GroupCategoryType" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="GroupId" />
@@ -412,23 +447,21 @@
           <Property Name="PackageId" Type="Int32" Nullable="false" />
           <Property Name="MentorId" Type="Int32" Nullable="false" />
           <Property Name="TeacherId" Type="Int32" Nullable="false" />
-          <Property Name="GroupCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryTypeId" Type="Int32" Nullable="false" />
           <Property Name="GroupStartDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CategoryType" Relationship="Self.FK_80" FromRole="Group" ToRole="CategoryType" />
           <NavigationProperty Name="Package" Relationship="Self.FK_48" FromRole="Group" ToRole="Package" />
           <NavigationProperty Name="Students" Relationship="Self.FK_51" FromRole="Group" ToRole="Student" />
           <NavigationProperty Name="Mentor" Relationship="Self.FK_54" FromRole="Group" ToRole="Mentor" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_57" FromRole="Group" ToRole="Teacher" />
-          <NavigationProperty Name="GroupCategory" Relationship="Self.FK_80" FromRole="Group" ToRole="GroupCategory" />
         </EntityType>
         <EntityType Name="GroupCategory">
           <Key>
             <PropertyRef Name="GroupCategoryId" />
           </Key>
           <Property Name="GroupCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupCategoryTypeId" Type="Int32" Nullable="false" />
           <Property Name="GroupCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Groups" Relationship="Self.FK_80" FromRole="GroupCategory" ToRole="Group" />
-          <NavigationProperty Name="GroupCategoryType" Relationship="Self.FK_75" FromRole="GroupCategory" ToRole="GroupCategoryType" />
+          <NavigationProperty Name="CategoryTypes" Relationship="Self.FK_GCat_CatT" FromRole="GroupCategory" ToRole="CategoryType" />
         </EntityType>
         <EntityType Name="GroupCategoryType">
           <Key>
@@ -438,7 +471,7 @@
           <Property Name="ProgramCategoryTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProgramCategoryTypeStartTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="ProgramCategoryTypeEndTime" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="GroupCategories" Relationship="Self.FK_75" FromRole="GroupCategoryType" ToRole="GroupCategory" />
+          <NavigationProperty Name="CategoryTypes" Relationship="Self.FK_GCatT_CatT" FromRole="GroupCategoryType" ToRole="CategoryType" />
         </EntityType>
         <EntityType Name="Library">
           <Key>
@@ -553,10 +586,10 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserType" Relationship="Self.FK_86" FromRole="User" ToRole="UserType" />
-          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -587,6 +620,42 @@
             </Principal>
             <Dependent Role="AssignTask">
               <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_80">
+          <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryType">
+              <PropertyRef Name="CategorytypeId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="CategoryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCat_CatT">
+          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="1" />
+          <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategory">
+              <PropertyRef Name="GroupCategoryId" />
+            </Principal>
+            <Dependent Role="CategoryType">
+              <PropertyRef Name="GroupCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GCatT_CatT">
+          <End Role="GroupCategoryType" Type="Self.GroupCategoryType" Multiplicity="1" />
+          <End Role="CategoryType" Type="Self.CategoryType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategoryType">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Principal>
+            <Dependent Role="CategoryType">
+              <PropertyRef Name="GroupCategoryTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -635,30 +704,6 @@
             </Principal>
             <Dependent Role="Group">
               <PropertyRef Name="TeacherId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_80">
-          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="1" />
-          <End Role="Group" Type="Self.Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GroupCategory">
-              <PropertyRef Name="GroupCategoryId" />
-            </Principal>
-            <Dependent Role="Group">
-              <PropertyRef Name="GroupCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_75">
-          <End Role="GroupCategoryType" Type="Self.GroupCategoryType" Multiplicity="1" />
-          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GroupCategoryType">
-              <PropertyRef Name="GroupCategoryTypeId" />
-            </Principal>
-            <Dependent Role="GroupCategory">
-              <PropertyRef Name="GroupCategoryTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -734,8 +779,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EducationProjectDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EducationProjectDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AssignTasks" EntityType="Self.AssignTask" />
+          <EntitySet Name="CategoryTypes" EntityType="Self.CategoryType" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="GroupCategories" EntityType="Self.GroupCategory" />
           <EntitySet Name="GroupCategoryTypes" EntityType="Self.GroupCategoryType" />
@@ -758,6 +804,18 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="AssignTask" EntitySet="AssignTasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_80" Association="Self.FK_80">
+            <End Role="CategoryType" EntitySet="CategoryTypes" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCat_CatT" Association="Self.FK_GCat_CatT">
+            <End Role="GroupCategory" EntitySet="GroupCategories" />
+            <End Role="CategoryType" EntitySet="CategoryTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GCatT_CatT" Association="Self.FK_GCatT_CatT">
+            <End Role="GroupCategoryType" EntitySet="GroupCategoryTypes" />
+            <End Role="CategoryType" EntitySet="CategoryTypes" />
+          </AssociationSet>
           <AssociationSet Name="FK_48" Association="Self.FK_48">
             <End Role="Package" EntitySet="Packages" />
             <End Role="Group" EntitySet="Groups" />
@@ -773,14 +831,6 @@
           <AssociationSet Name="FK_57" Association="Self.FK_57">
             <End Role="Teacher" EntitySet="Teachers" />
             <End Role="Group" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_80" Association="Self.FK_80">
-            <End Role="GroupCategory" EntitySet="GroupCategories" />
-            <End Role="Group" EntitySet="Groups" />
-          </AssociationSet>
-          <AssociationSet Name="FK_75" Association="Self.FK_75">
-            <End Role="GroupCategoryType" EntitySet="GroupCategoryTypes" />
-            <End Role="GroupCategory" EntitySet="GroupCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_110" Association="Self.FK_110">
             <End Role="Package" EntitySet="Packages" />
@@ -812,13 +862,22 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EducationProjectDbModelStoreContainer" CdmEntityContainer="EducationProjectDbEntities">
+        <EntityContainerMapping StorageEntityContainer="EducationProjectDbModelStoreContainer" CdmEntityContainer="EducationProjectDbEntities1">
           <EntitySetMapping Name="AssignTasks">
             <EntityTypeMapping TypeName="EducationProjectDbModel.AssignTask">
               <MappingFragment StoreEntitySet="AssignTask">
                 <ScalarProperty Name="AssignTaskId" ColumnName="AssignTaskId" />
                 <ScalarProperty Name="TaskId" ColumnName="TaskId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryTypes">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.CategoryType">
+              <MappingFragment StoreEntitySet="CategoryType">
+                <ScalarProperty Name="CategorytypeId" ColumnName="CategorytypeId" />
+                <ScalarProperty Name="GroupCategoryId" ColumnName="GroupCategoryId" />
+                <ScalarProperty Name="GroupCategoryTypeId" ColumnName="GroupCategoryTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -829,7 +888,7 @@
                 <ScalarProperty Name="PackageId" ColumnName="PackageId" />
                 <ScalarProperty Name="MentorId" ColumnName="MentorId" />
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
-                <ScalarProperty Name="GroupCategoryId" ColumnName="GroupCategoryId" />
+                <ScalarProperty Name="CategoryTypeId" ColumnName="CategoryTypeId" />
                 <ScalarProperty Name="GroupStartDate" ColumnName="GroupStartDate" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -838,7 +897,6 @@
             <EntityTypeMapping TypeName="EducationProjectDbModel.GroupCategory">
               <MappingFragment StoreEntitySet="GroupCategory">
                 <ScalarProperty Name="GroupCategoryId" ColumnName="GroupCategoryId" />
-                <ScalarProperty Name="GroupCategoryTypeId" ColumnName="GroupCategoryTypeId" />
                 <ScalarProperty Name="GroupCategoryName" ColumnName="GroupCategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -957,9 +1015,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="EducationProjectDbModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
               </MappingFragment>
             </EntityTypeMapping>

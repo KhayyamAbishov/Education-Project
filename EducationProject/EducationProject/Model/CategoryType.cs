@@ -12,20 +12,21 @@ namespace EducationProject.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class GroupCategoryType
+    public partial class CategoryType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GroupCategoryType()
+        public CategoryType()
         {
-            this.CategoryTypes = new HashSet<CategoryType>();
+            this.Groups = new HashSet<Group>();
         }
     
+        public int CategorytypeId { get; set; }
+        public int GroupCategoryId { get; set; }
         public int GroupCategoryTypeId { get; set; }
-        public string ProgramCategoryTypeName { get; set; }
-        public System.TimeSpan ProgramCategoryTypeStartTime { get; set; }
-        public System.TimeSpan ProgramCategoryTypeEndTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CategoryType> CategoryTypes { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
+        public virtual GroupCategory GroupCategory { get; set; }
+        public virtual GroupCategoryType GroupCategoryType { get; set; }
     }
 }

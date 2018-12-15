@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabRegistration = new System.Windows.Forms.TabControl();
             this.tabTeacher = new System.Windows.Forms.TabPage();
+            this.cbxRegtrTeacherSpec = new System.Windows.Forms.ComboBox();
+            this.btnChooseRegstrTeachPh = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
             this.dgvRegistrTeacher = new System.Windows.Forms.DataGridView();
             this.btnRegistrDeleteTeach = new System.Windows.Forms.Button();
             this.btnRegistrUpdateTeach = new System.Windows.Forms.Button();
@@ -48,7 +52,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Mentor = new System.Windows.Forms.TabPage();
+            this.tabMentor = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txbRegstrMnetrSpec = new System.Windows.Forms.TextBox();
             this.btnRgstrMentorDelete = new System.Windows.Forms.Button();
             this.btnRgstrMentorUpdate = new System.Windows.Forms.Button();
             this.btnRgstrMentorAdd = new System.Windows.Forms.Button();
@@ -67,7 +73,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabStudent = new System.Windows.Forms.TabPage();
+            this.txbRgstStudBirth = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txbRegtrStudentRgsDate = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnRgstrStudDelete = new System.Windows.Forms.Button();
             this.btnRgstrStudUpdate = new System.Windows.Forms.Button();
             this.btnRgstrStudAdd = new System.Windows.Forms.Button();
@@ -86,24 +96,27 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txbRegtrStudentRgsDate = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txbRgstStudBirth = new System.Windows.Forms.TextBox();
+            this.userTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.educationProjectDbDataSet1 = new EducationProject.EducationProjectDbDataSet1();
+            this.userTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userTypeTableAdapter = new EducationProject.EducationProjectDbDataSet1TableAdapters.UserTypeTableAdapter();
             this.tabRegistration.SuspendLayout();
             this.tabTeacher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrTeacher)).BeginInit();
-            this.Mentor.SuspendLayout();
+            this.tabMentor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRgstrMentor)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabStudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabRegistration
             // 
             this.tabRegistration.Controls.Add(this.tabTeacher);
-            this.tabRegistration.Controls.Add(this.Mentor);
-            this.tabRegistration.Controls.Add(this.tabPage3);
+            this.tabRegistration.Controls.Add(this.tabMentor);
+            this.tabRegistration.Controls.Add(this.tabStudent);
             this.tabRegistration.Location = new System.Drawing.Point(12, 12);
             this.tabRegistration.Name = "tabRegistration";
             this.tabRegistration.SelectedIndex = 0;
@@ -113,6 +126,9 @@
             // tabTeacher
             // 
             this.tabTeacher.AutoScroll = true;
+            this.tabTeacher.Controls.Add(this.cbxRegtrTeacherSpec);
+            this.tabTeacher.Controls.Add(this.btnChooseRegstrTeachPh);
+            this.tabTeacher.Controls.Add(this.label20);
             this.tabTeacher.Controls.Add(this.dgvRegistrTeacher);
             this.tabTeacher.Controls.Add(this.btnRegistrDeleteTeach);
             this.tabTeacher.Controls.Add(this.btnRegistrUpdateTeach);
@@ -134,10 +150,38 @@
             this.tabTeacher.Location = new System.Drawing.Point(4, 22);
             this.tabTeacher.Name = "tabTeacher";
             this.tabTeacher.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTeacher.Size = new System.Drawing.Size(739, 357);
+            this.tabTeacher.Size = new System.Drawing.Size(739, 400);
             this.tabTeacher.TabIndex = 0;
             this.tabTeacher.Text = "Teacher";
             this.tabTeacher.UseVisualStyleBackColor = true;
+            // 
+            // cbxRegtrTeacherSpec
+            // 
+            this.cbxRegtrTeacherSpec.FormattingEnabled = true;
+            this.cbxRegtrTeacherSpec.Location = new System.Drawing.Point(143, 234);
+            this.cbxRegtrTeacherSpec.Name = "cbxRegtrTeacherSpec";
+            this.cbxRegtrTeacherSpec.Size = new System.Drawing.Size(100, 21);
+            this.cbxRegtrTeacherSpec.TabIndex = 23;
+            this.cbxRegtrTeacherSpec.SelectedIndexChanged += new System.EventHandler(this.cbxRegtrTeacherSpec_SelectedIndexChanged);
+            // 
+            // btnChooseRegstrTeachPh
+            // 
+            this.btnChooseRegstrTeachPh.Location = new System.Drawing.Point(249, 275);
+            this.btnChooseRegstrTeachPh.Name = "btnChooseRegstrTeachPh";
+            this.btnChooseRegstrTeachPh.Size = new System.Drawing.Size(75, 23);
+            this.btnChooseRegstrTeachPh.TabIndex = 22;
+            this.btnChooseRegstrTeachPh.Text = "Choose";
+            this.btnChooseRegstrTeachPh.UseVisualStyleBackColor = true;
+            this.btnChooseRegstrTeachPh.Click += new System.EventHandler(this.btnChooseRegstrTeachPh_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(25, 237);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(95, 13);
+            this.label20.TabIndex = 20;
+            this.label20.Text = "Teacher Speciality";
             // 
             // dgvRegistrTeacher
             // 
@@ -158,7 +202,7 @@
             // 
             // btnRegistrUpdateTeach
             // 
-            this.btnRegistrUpdateTeach.Location = new System.Drawing.Point(518, 298);
+            this.btnRegistrUpdateTeach.Location = new System.Drawing.Point(562, 298);
             this.btnRegistrUpdateTeach.Name = "btnRegistrUpdateTeach";
             this.btnRegistrUpdateTeach.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrUpdateTeach.TabIndex = 17;
@@ -167,51 +211,53 @@
             // 
             // btnRgistrAddTeach
             // 
-            this.btnRgistrAddTeach.Location = new System.Drawing.Point(391, 298);
+            this.btnRgistrAddTeach.Location = new System.Drawing.Point(481, 298);
             this.btnRgistrAddTeach.Name = "btnRgistrAddTeach";
             this.btnRgistrAddTeach.Size = new System.Drawing.Size(75, 23);
             this.btnRgistrAddTeach.TabIndex = 16;
             this.btnRgistrAddTeach.Text = "Add";
             this.btnRgistrAddTeach.UseVisualStyleBackColor = true;
+            this.btnRgistrAddTeach.Click += new System.EventHandler(this.btnRgistrAddTeach_Click);
             // 
             // txbRegistrTeacPhoto
             // 
-            this.txbRegistrTeacPhoto.Location = new System.Drawing.Point(143, 241);
+            this.txbRegistrTeacPhoto.Location = new System.Drawing.Point(143, 277);
             this.txbRegistrTeacPhoto.Name = "txbRegistrTeacPhoto";
             this.txbRegistrTeacPhoto.Size = new System.Drawing.Size(100, 20);
             this.txbRegistrTeacPhoto.TabIndex = 15;
             // 
             // txbRegistrTeacBio
             // 
-            this.txbRegistrTeacBio.Location = new System.Drawing.Point(143, 204);
+            this.txbRegistrTeacBio.Location = new System.Drawing.Point(143, 320);
+            this.txbRegistrTeacBio.Multiline = true;
             this.txbRegistrTeacBio.Name = "txbRegistrTeacBio";
-            this.txbRegistrTeacBio.Size = new System.Drawing.Size(100, 20);
+            this.txbRegistrTeacBio.Size = new System.Drawing.Size(100, 74);
             this.txbRegistrTeacBio.TabIndex = 14;
             // 
             // txbRegistrTeacPasswrd
             // 
-            this.txbRegistrTeacPasswrd.Location = new System.Drawing.Point(143, 130);
+            this.txbRegistrTeacPasswrd.Location = new System.Drawing.Point(143, 148);
             this.txbRegistrTeacPasswrd.Name = "txbRegistrTeacPasswrd";
             this.txbRegistrTeacPasswrd.Size = new System.Drawing.Size(100, 20);
             this.txbRegistrTeacPasswrd.TabIndex = 13;
             // 
             // txbRegistrTeacPhone
             // 
-            this.txbRegistrTeacPhone.Location = new System.Drawing.Point(143, 167);
+            this.txbRegistrTeacPhone.Location = new System.Drawing.Point(143, 191);
             this.txbRegistrTeacPhone.Name = "txbRegistrTeacPhone";
             this.txbRegistrTeacPhone.Size = new System.Drawing.Size(100, 20);
             this.txbRegistrTeacPhone.TabIndex = 11;
             // 
             // txbRegistrTeacEmail
             // 
-            this.txbRegistrTeacEmail.Location = new System.Drawing.Point(143, 93);
+            this.txbRegistrTeacEmail.Location = new System.Drawing.Point(143, 105);
             this.txbRegistrTeacEmail.Name = "txbRegistrTeacEmail";
             this.txbRegistrTeacEmail.Size = new System.Drawing.Size(100, 20);
             this.txbRegistrTeacEmail.TabIndex = 10;
             // 
             // txbRegistrTeacSurname
             // 
-            this.txbRegistrTeacSurname.Location = new System.Drawing.Point(143, 56);
+            this.txbRegistrTeacSurname.Location = new System.Drawing.Point(143, 62);
             this.txbRegistrTeacSurname.Name = "txbRegistrTeacSurname";
             this.txbRegistrTeacSurname.Size = new System.Drawing.Size(100, 20);
             this.txbRegistrTeacSurname.TabIndex = 9;
@@ -226,7 +272,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(24, 133);
+            this.label8.Location = new System.Drawing.Point(24, 151);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 7;
@@ -235,7 +281,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 244);
+            this.label6.Location = new System.Drawing.Point(35, 280);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 5;
@@ -244,7 +290,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 207);
+            this.label5.Location = new System.Drawing.Point(48, 323);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 4;
@@ -253,7 +299,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 170);
+            this.label4.Location = new System.Drawing.Point(35, 194);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 3;
@@ -262,7 +308,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 59);
+            this.label3.Location = new System.Drawing.Point(24, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 2;
@@ -271,7 +317,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 96);
+            this.label2.Location = new System.Drawing.Point(41, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 1;
@@ -286,34 +332,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Teacher Name";
             // 
-            // Mentor
+            // tabMentor
             // 
-            this.Mentor.AutoScroll = true;
-            this.Mentor.Controls.Add(this.btnRgstrMentorDelete);
-            this.Mentor.Controls.Add(this.btnRgstrMentorUpdate);
-            this.Mentor.Controls.Add(this.btnRgstrMentorAdd);
-            this.Mentor.Controls.Add(this.dgvRgstrMentor);
-            this.Mentor.Controls.Add(this.txbRegistrMentorPhoto);
-            this.Mentor.Controls.Add(this.txbRegistrMentroSrname);
-            this.Mentor.Controls.Add(this.txbRegistrMentorEmail);
-            this.Mentor.Controls.Add(this.txbRegistrMentorPhone);
-            this.Mentor.Controls.Add(this.txbRegistrMentorPassw);
-            this.Mentor.Controls.Add(this.txbRegistrMentorBio);
-            this.Mentor.Controls.Add(this.txbRegistrMentorName);
-            this.Mentor.Controls.Add(this.label16);
-            this.Mentor.Controls.Add(this.label15);
-            this.Mentor.Controls.Add(this.label14);
-            this.Mentor.Controls.Add(this.label12);
-            this.Mentor.Controls.Add(this.label11);
-            this.Mentor.Controls.Add(this.label10);
-            this.Mentor.Controls.Add(this.label9);
-            this.Mentor.Location = new System.Drawing.Point(4, 22);
-            this.Mentor.Name = "Mentor";
-            this.Mentor.Padding = new System.Windows.Forms.Padding(3);
-            this.Mentor.Size = new System.Drawing.Size(739, 357);
-            this.Mentor.TabIndex = 1;
-            this.Mentor.Text = "Mentor";
-            this.Mentor.UseVisualStyleBackColor = true;
+            this.tabMentor.AutoScroll = true;
+            this.tabMentor.Controls.Add(this.label25);
+            this.tabMentor.Controls.Add(this.txbRegstrMnetrSpec);
+            this.tabMentor.Controls.Add(this.btnRgstrMentorDelete);
+            this.tabMentor.Controls.Add(this.btnRgstrMentorUpdate);
+            this.tabMentor.Controls.Add(this.btnRgstrMentorAdd);
+            this.tabMentor.Controls.Add(this.dgvRgstrMentor);
+            this.tabMentor.Controls.Add(this.txbRegistrMentorPhoto);
+            this.tabMentor.Controls.Add(this.txbRegistrMentroSrname);
+            this.tabMentor.Controls.Add(this.txbRegistrMentorEmail);
+            this.tabMentor.Controls.Add(this.txbRegistrMentorPhone);
+            this.tabMentor.Controls.Add(this.txbRegistrMentorPassw);
+            this.tabMentor.Controls.Add(this.txbRegistrMentorBio);
+            this.tabMentor.Controls.Add(this.txbRegistrMentorName);
+            this.tabMentor.Controls.Add(this.label16);
+            this.tabMentor.Controls.Add(this.label15);
+            this.tabMentor.Controls.Add(this.label14);
+            this.tabMentor.Controls.Add(this.label12);
+            this.tabMentor.Controls.Add(this.label11);
+            this.tabMentor.Controls.Add(this.label10);
+            this.tabMentor.Controls.Add(this.label9);
+            this.tabMentor.Location = new System.Drawing.Point(4, 22);
+            this.tabMentor.Name = "tabMentor";
+            this.tabMentor.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMentor.Size = new System.Drawing.Size(739, 400);
+            this.tabMentor.TabIndex = 1;
+            this.tabMentor.Text = "Mentor";
+            this.tabMentor.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(17, 232);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(88, 13);
+            this.label25.TabIndex = 21;
+            this.label25.Text = "Mentor Speciality";
+            // 
+            // txbRegstrMnetrSpec
+            // 
+            this.txbRegstrMnetrSpec.Location = new System.Drawing.Point(137, 232);
+            this.txbRegstrMnetrSpec.Name = "txbRegstrMnetrSpec";
+            this.txbRegstrMnetrSpec.Size = new System.Drawing.Size(100, 20);
+            this.txbRegstrMnetrSpec.TabIndex = 20;
             // 
             // btnRgstrMentorDelete
             // 
@@ -352,7 +416,7 @@
             // 
             // txbRegistrMentorPhoto
             // 
-            this.txbRegistrMentorPhoto.Location = new System.Drawing.Point(137, 225);
+            this.txbRegistrMentorPhoto.Location = new System.Drawing.Point(137, 197);
             this.txbRegistrMentorPhoto.Name = "txbRegistrMentorPhoto";
             this.txbRegistrMentorPhoto.Size = new System.Drawing.Size(100, 20);
             this.txbRegistrMentorPhoto.TabIndex = 15;
@@ -387,9 +451,10 @@
             // 
             // txbRegistrMentorBio
             // 
-            this.txbRegistrMentorBio.Location = new System.Drawing.Point(137, 190);
+            this.txbRegistrMentorBio.Location = new System.Drawing.Point(137, 271);
+            this.txbRegistrMentorBio.Multiline = true;
             this.txbRegistrMentorBio.Name = "txbRegistrMentorBio";
-            this.txbRegistrMentorBio.Size = new System.Drawing.Size(100, 20);
+            this.txbRegistrMentorBio.Size = new System.Drawing.Size(100, 123);
             this.txbRegistrMentorBio.TabIndex = 9;
             // 
             // txbRegistrMentorName
@@ -402,7 +467,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(31, 228);
+            this.label16.Location = new System.Drawing.Point(31, 197);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(71, 13);
             this.label16.TabIndex = 7;
@@ -411,7 +476,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(44, 193);
+            this.label15.Location = new System.Drawing.Point(44, 274);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(58, 13);
             this.label15.TabIndex = 6;
@@ -462,38 +527,70 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Mentor Name";
             // 
-            // tabPage3
+            // tabStudent
             // 
-            this.tabPage3.AutoScroll = true;
-            this.tabPage3.Controls.Add(this.txbRgstStudBirth);
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.txbRegtrStudentRgsDate);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.btnRgstrStudDelete);
-            this.tabPage3.Controls.Add(this.btnRgstrStudUpdate);
-            this.tabPage3.Controls.Add(this.btnRgstrStudAdd);
-            this.tabPage3.Controls.Add(this.dataGridView1);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentPhoto);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentBio);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentPassw);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentPhone);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentEmail);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentSrnN);
-            this.tabPage3.Controls.Add(this.txbRgstrStudentName);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.label22);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(739, 400);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Student";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabStudent.AutoScroll = true;
+            this.tabStudent.Controls.Add(this.txbRgstStudBirth);
+            this.tabStudent.Controls.Add(this.label13);
+            this.tabStudent.Controls.Add(this.txbRegtrStudentRgsDate);
+            this.tabStudent.Controls.Add(this.label7);
+            this.tabStudent.Controls.Add(this.btnRgstrStudDelete);
+            this.tabStudent.Controls.Add(this.btnRgstrStudUpdate);
+            this.tabStudent.Controls.Add(this.btnRgstrStudAdd);
+            this.tabStudent.Controls.Add(this.dataGridView1);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentPhoto);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentBio);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentPassw);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentPhone);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentEmail);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentSrnN);
+            this.tabStudent.Controls.Add(this.txbRgstrStudentName);
+            this.tabStudent.Controls.Add(this.label23);
+            this.tabStudent.Controls.Add(this.label22);
+            this.tabStudent.Controls.Add(this.label21);
+            this.tabStudent.Controls.Add(this.label19);
+            this.tabStudent.Controls.Add(this.label24);
+            this.tabStudent.Controls.Add(this.label18);
+            this.tabStudent.Controls.Add(this.label17);
+            this.tabStudent.Location = new System.Drawing.Point(4, 22);
+            this.tabStudent.Name = "tabStudent";
+            this.tabStudent.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStudent.Size = new System.Drawing.Size(739, 400);
+            this.tabStudent.TabIndex = 2;
+            this.tabStudent.Text = "Student";
+            this.tabStudent.UseVisualStyleBackColor = true;
+            // 
+            // txbRgstStudBirth
+            // 
+            this.txbRgstStudBirth.Location = new System.Drawing.Point(141, 274);
+            this.txbRgstStudBirth.Name = "txbRgstStudBirth";
+            this.txbRgstStudBirth.Size = new System.Drawing.Size(100, 20);
+            this.txbRgstStudBirth.TabIndex = 28;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(32, 276);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Student Bithday";
+            // 
+            // txbRegtrStudentRgsDate
+            // 
+            this.txbRegtrStudentRgsDate.Location = new System.Drawing.Point(141, 238);
+            this.txbRegtrStudentRgsDate.Name = "txbRegtrStudentRgsDate";
+            this.txbRegtrStudentRgsDate.Size = new System.Drawing.Size(100, 20);
+            this.txbRegtrStudentRgsDate.TabIndex = 26;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 244);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Student Registr Date";
             // 
             // btnRgstrStudDelete
             // 
@@ -644,37 +741,23 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Student Name";
             // 
-            // label7
+            // userTypeBindingSource1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 244);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(106, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Student Registr Date";
+            this.userTypeBindingSource1.DataMember = "UserType";
+            this.userTypeBindingSource1.DataSource = this.educationProjectDbDataSet1;
             // 
-            // txbRegtrStudentRgsDate
+            // educationProjectDbDataSet1
             // 
-            this.txbRegtrStudentRgsDate.Location = new System.Drawing.Point(141, 238);
-            this.txbRegtrStudentRgsDate.Name = "txbRegtrStudentRgsDate";
-            this.txbRegtrStudentRgsDate.Size = new System.Drawing.Size(100, 20);
-            this.txbRegtrStudentRgsDate.TabIndex = 26;
+            this.educationProjectDbDataSet1.DataSetName = "EducationProjectDbDataSet1";
+            this.educationProjectDbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // label13
+            // userTypeBindingSource
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(32, 276);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(82, 13);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "Student Bithday";
+            this.userTypeBindingSource.DataMember = "UserType";
             // 
-            // txbRgstStudBirth
+            // userTypeTableAdapter
             // 
-            this.txbRgstStudBirth.Location = new System.Drawing.Point(141, 274);
-            this.txbRgstStudBirth.Name = "txbRgstStudBirth";
-            this.txbRgstStudBirth.Size = new System.Drawing.Size(100, 20);
-            this.txbRgstStudBirth.TabIndex = 28;
+            this.userTypeTableAdapter.ClearBeforeFill = true;
             // 
             // Registration
             // 
@@ -684,16 +767,20 @@
             this.Controls.Add(this.tabRegistration);
             this.Name = "Registration";
             this.Text = "Registration";
+            this.Load += new System.EventHandler(this.Registration_Load);
             this.tabRegistration.ResumeLayout(false);
             this.tabTeacher.ResumeLayout(false);
             this.tabTeacher.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrTeacher)).EndInit();
-            this.Mentor.ResumeLayout(false);
-            this.Mentor.PerformLayout();
+            this.tabMentor.ResumeLayout(false);
+            this.tabMentor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRgstrMentor)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabStudent.ResumeLayout(false);
+            this.tabStudent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -709,7 +796,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage Mentor;
+        private System.Windows.Forms.TabPage tabMentor;
         private System.Windows.Forms.DataGridView dgvRegistrTeacher;
         private System.Windows.Forms.Button btnRegistrDeleteTeach;
         private System.Windows.Forms.Button btnRegistrUpdateTeach;
@@ -739,7 +826,7 @@
         private System.Windows.Forms.TextBox txbRegistrMentorPassw;
         private System.Windows.Forms.TextBox txbRegistrMentorBio;
         private System.Windows.Forms.TextBox txbRegistrMentorName;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabStudent;
         private System.Windows.Forms.Button btnRgstrStudDelete;
         private System.Windows.Forms.Button btnRgstrStudUpdate;
         private System.Windows.Forms.Button btnRgstrStudAdd;
@@ -762,5 +849,14 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txbRegtrStudentRgsDate;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txbRegstrMnetrSpec;
+        private System.Windows.Forms.Button btnChooseRegstrTeachPh;
+        private System.Windows.Forms.ComboBox cbxRegtrTeacherSpec;
+        private System.Windows.Forms.BindingSource userTypeBindingSource;
+        private EducationProjectDbDataSet1 educationProjectDbDataSet1;
+        private System.Windows.Forms.BindingSource userTypeBindingSource1;
+        private EducationProjectDbDataSet1TableAdapters.UserTypeTableAdapter userTypeTableAdapter;
     }
 }

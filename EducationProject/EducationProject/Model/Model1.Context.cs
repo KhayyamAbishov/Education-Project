@@ -13,10 +13,10 @@ namespace EducationProject.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EducationProjectDbEntities : DbContext
+    public partial class EducationProjectDbEntities1 : DbContext
     {
-        public EducationProjectDbEntities()
-            : base("name=EducationProjectDbEntities")
+        public EducationProjectDbEntities1()
+            : base("name=EducationProjectDbEntities1")
         {
         }
     
@@ -26,6 +26,7 @@ namespace EducationProject.Model
         }
     
         public virtual DbSet<AssignTask> AssignTasks { get; set; }
+        public virtual DbSet<CategoryType> CategoryTypes { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<GroupCategory> GroupCategories { get; set; }
         public virtual DbSet<GroupCategoryType> GroupCategoryTypes { get; set; }

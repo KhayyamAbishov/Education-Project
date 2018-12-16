@@ -81,6 +81,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EducationProjectDbDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EducationProjectDbDataSet2.cs">
+      <DependentUpon>EducationProjectDbDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EducationProjectDbDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EducationProjectDbDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EducationProjectDbDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EducationProjectDbDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EducationProjectDbDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EducationProjectDbDataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model\AssignTask.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -135,6 +153,7 @@
     <Compile Include="Model\Teacher.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TeacherDetails.cs" />
     <Compile Include="Model\Transcript.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -258,6 +277,39 @@
     </None>
     <None Include="EducationProjectDbDataSet1.xss">
       <DependentUpon>EducationProjectDbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="EducationProjectDbDataSet2.xsc">
+      <DependentUpon>EducationProjectDbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="EducationProjectDbDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EducationProjectDbDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EducationProjectDbDataSet2.xss">
+      <DependentUpon>EducationProjectDbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="EducationProjectDbDataSet3.xsc">
+      <DependentUpon>EducationProjectDbDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="EducationProjectDbDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EducationProjectDbDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EducationProjectDbDataSet3.xss">
+      <DependentUpon>EducationProjectDbDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="EducationProjectDbDataSet4.xsc">
+      <DependentUpon>EducationProjectDbDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="EducationProjectDbDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EducationProjectDbDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EducationProjectDbDataSet4.xss">
+      <DependentUpon>EducationProjectDbDataSet4.xsd</DependentUpon>
     </None>
     <None Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>

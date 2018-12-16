@@ -35,6 +35,8 @@
             this.btnChooseRegstrTeachPh = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.dgvRegistrTeacher = new System.Windows.Forms.DataGridView();
+            this.teacherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.educationProjectDbDataSet2 = new EducationProject.EducationProjectDbDataSet2();
             this.btnRegistrDeleteTeach = new System.Windows.Forms.Button();
             this.btnRegistrUpdateTeach = new System.Windows.Forms.Button();
             this.btnRgistrAddTeach = new System.Windows.Forms.Button();
@@ -100,9 +102,12 @@
             this.educationProjectDbDataSet1 = new EducationProject.EducationProjectDbDataSet1();
             this.userTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userTypeTableAdapter = new EducationProject.EducationProjectDbDataSet1TableAdapters.UserTypeTableAdapter();
+            this.teacherTableAdapter = new EducationProject.EducationProjectDbDataSet2TableAdapters.TeacherTableAdapter();
             this.tabRegistration.SuspendLayout();
             this.tabTeacher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrTeacher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet2)).BeginInit();
             this.tabMentor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRgstrMentor)).BeginInit();
             this.tabStudent.SuspendLayout();
@@ -186,10 +191,21 @@
             // dgvRegistrTeacher
             // 
             this.dgvRegistrTeacher.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistrTeacher.Location = new System.Drawing.Point(264, 19);
+            this.dgvRegistrTeacher.Location = new System.Drawing.Point(280, 19);
             this.dgvRegistrTeacher.Name = "dgvRegistrTeacher";
-            this.dgvRegistrTeacher.Size = new System.Drawing.Size(454, 244);
+            this.dgvRegistrTeacher.Size = new System.Drawing.Size(438, 244);
             this.dgvRegistrTeacher.TabIndex = 19;
+            this.dgvRegistrTeacher.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistrTeacher_CellDoubleClick);
+            // 
+            // teacherBindingSource
+            // 
+            this.teacherBindingSource.DataMember = "Teacher";
+            this.teacherBindingSource.DataSource = this.educationProjectDbDataSet2;
+            // 
+            // educationProjectDbDataSet2
+            // 
+            this.educationProjectDbDataSet2.DataSetName = "EducationProjectDbDataSet2";
+            this.educationProjectDbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnRegistrDeleteTeach
             // 
@@ -208,6 +224,7 @@
             this.btnRegistrUpdateTeach.TabIndex = 17;
             this.btnRegistrUpdateTeach.Text = "Update";
             this.btnRegistrUpdateTeach.UseVisualStyleBackColor = true;
+            this.btnRegistrUpdateTeach.Click += new System.EventHandler(this.btnRegistrUpdateTeach_Click);
             // 
             // btnRgistrAddTeach
             // 
@@ -759,6 +776,10 @@
             // 
             this.userTypeTableAdapter.ClearBeforeFill = true;
             // 
+            // teacherTableAdapter
+            // 
+            this.teacherTableAdapter.ClearBeforeFill = true;
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -772,6 +793,8 @@
             this.tabTeacher.ResumeLayout(false);
             this.tabTeacher.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrTeacher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet2)).EndInit();
             this.tabMentor.ResumeLayout(false);
             this.tabMentor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRgstrMentor)).EndInit();
@@ -858,5 +881,8 @@
         private EducationProjectDbDataSet1 educationProjectDbDataSet1;
         private System.Windows.Forms.BindingSource userTypeBindingSource1;
         private EducationProjectDbDataSet1TableAdapters.UserTypeTableAdapter userTypeTableAdapter;
+        private EducationProjectDbDataSet2 educationProjectDbDataSet2;
+        private System.Windows.Forms.BindingSource teacherBindingSource;
+        private EducationProjectDbDataSet2TableAdapters.TeacherTableAdapter teacherTableAdapter;
     }
 }

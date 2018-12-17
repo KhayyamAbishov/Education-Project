@@ -35,8 +35,6 @@
             this.btnChooseRegstrTeachPh = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.dgvRegistrTeacher = new System.Windows.Forms.DataGridView();
-            this.teacherBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.educationProjectDbDataSet2 = new EducationProject.EducationProjectDbDataSet2();
             this.btnRegistrDeleteTeach = new System.Windows.Forms.Button();
             this.btnRegistrUpdateTeach = new System.Windows.Forms.Button();
             this.btnRgistrAddTeach = new System.Windows.Forms.Button();
@@ -98,6 +96,8 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.teacherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.educationProjectDbDataSet2 = new EducationProject.EducationProjectDbDataSet2();
             this.userTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.educationProjectDbDataSet1 = new EducationProject.EducationProjectDbDataSet1();
             this.userTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -106,12 +106,12 @@
             this.tabRegistration.SuspendLayout();
             this.tabTeacher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrTeacher)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet2)).BeginInit();
             this.tabMentor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRgstrMentor)).BeginInit();
             this.tabStudent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource)).BeginInit();
@@ -196,16 +196,6 @@
             this.dgvRegistrTeacher.Size = new System.Drawing.Size(438, 244);
             this.dgvRegistrTeacher.TabIndex = 19;
             this.dgvRegistrTeacher.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistrTeacher_CellDoubleClick);
-            // 
-            // teacherBindingSource
-            // 
-            this.teacherBindingSource.DataMember = "Teacher";
-            this.teacherBindingSource.DataSource = this.educationProjectDbDataSet2;
-            // 
-            // educationProjectDbDataSet2
-            // 
-            this.educationProjectDbDataSet2.DataSetName = "EducationProjectDbDataSet2";
-            this.educationProjectDbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnRegistrDeleteTeach
             // 
@@ -758,6 +748,16 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "Student Name";
             // 
+            // teacherBindingSource
+            // 
+            this.teacherBindingSource.DataMember = "Teacher";
+            this.teacherBindingSource.DataSource = this.educationProjectDbDataSet2;
+            // 
+            // educationProjectDbDataSet2
+            // 
+            this.educationProjectDbDataSet2.DataSetName = "EducationProjectDbDataSet2";
+            this.educationProjectDbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // userTypeBindingSource1
             // 
             this.userTypeBindingSource1.DataMember = "UserType";
@@ -793,14 +793,14 @@
             this.tabTeacher.ResumeLayout(false);
             this.tabTeacher.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrTeacher)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet2)).EndInit();
             this.tabMentor.ResumeLayout(false);
             this.tabMentor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRgstrMentor)).EndInit();
             this.tabStudent.ResumeLayout(false);
             this.tabStudent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.educationProjectDbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userTypeBindingSource)).EndInit();

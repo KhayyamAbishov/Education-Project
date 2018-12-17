@@ -105,6 +105,7 @@
     <Compile Include="Model\CategoryType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CrudOperations.cs" />
     <Compile Include="Model\Group.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -153,7 +154,9 @@
     <Compile Include="Model\Teacher.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\TeacherDetails.cs" />
+    <Compile Include="Model\TeacherInfoDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Transcript.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

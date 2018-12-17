@@ -19,16 +19,16 @@ namespace EducationProject.View
         static OpenFileDialog dbxChoosePhoto = new OpenFileDialog();
         static string currFileRoot = Directory.GetCurrentDirectory();
         static string UploadFolderPath = Path.Combine(currFileRoot, "Upload");
-       List<TeacherDetails> tDet = db.Teachers.Join(db.Packages, t => t.PackageId, p => p.PackageId, (t, p) => new TeacherDetails
-        {
-            TeacherName = t.TeacherName,
-            TeacherSurname = t.TeacherSurname,
-            TeacherEmail = t.TeacherEmail,
-            TeacherPhone = t.TeacherPhone,
-            TeacherPhoto = t.TeacherPhoto,
-            TeacherBio = t.TeacherBio,
-            TeacherSpeciality = p.PackageName
-        }).ToList();
+       //List<TeacherDetails> tDet = db.Teachers.Join(db.Packages, t => t.PackageId, p => p.PackageId, (t, p) => new TeacherDetails
+       // {
+       //     TeacherName = t.TeacherName,
+       //     TeacherSurname = t.TeacherSurname,
+       //     TeacherEmail = t.TeacherEmail,
+       //     TeacherPhone = t.TeacherPhone,
+       //     TeacherPhoto = t.TeacherPhoto,
+       //     TeacherBio = t.TeacherBio,
+       //     TeacherSpeciality = p.PackageName
+       // }).ToList();
 
         public Registration()
         {
@@ -121,18 +121,20 @@ namespace EducationProject.View
             // TODO: This line of code loads data into the 'educationProjectDbDataSet2.Teacher' table. You can move, or remove it, as needed.
             //  this.teacherTableAdapter.Fill(this.educationProjectDbDataSet2.Teacher);
             GetListTeacherSpec();
-        
-            dgvRegistrTeacher.DataSource = tDet;
+              
+           // dgvRegistrTeacher.DataSource = tDet;
         }
 
 
-        bool Update()
-        {
-            
-        }
         private void btnRegistrUpdateTeach_Click(object sender, EventArgs e)
         {
+            Model.CrudOperations.Update(new TeacherInfoDetail()
+            {
 
+            }
+                );
+
+            
         }
 
         private void dgvRegistrTeacher_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -148,6 +150,8 @@ namespace EducationProject.View
 
             }
         }
+
+       
     }
 
 

@@ -156,6 +156,25 @@
           <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EducationProjectDb.dbo.TeacherInfoDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TeacherInfoDetail">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+            <PropertyRef Name="TeacherName" />
+            <PropertyRef Name="TeacherSurname" />
+            <PropertyRef Name="TeacherEmail" />
+            <PropertyRef Name="PackageName" />
+          </Key>
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="TeacherName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherPhoto" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherBio" Type="nvarchar" MaxLength="50" />
+          <Property Name="PackageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_110">
           <End Role="Package" Type="Self.Package" Multiplicity="1" />
           <End Role="Mentor" Type="Self.Mentor" Multiplicity="*" />
@@ -353,6 +372,18 @@
           <EntitySet Name="Transcript" EntityType="Self.Transcript" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherInfoDetail" EntityType="Self.TeacherInfoDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TeacherInfoDetail].[TeacherId] AS [TeacherId], 
+    [TeacherInfoDetail].[TeacherName] AS [TeacherName], 
+    [TeacherInfoDetail].[TeacherSurname] AS [TeacherSurname], 
+    [TeacherInfoDetail].[TeacherEmail] AS [TeacherEmail], 
+    [TeacherInfoDetail].[TeacherPhone] AS [TeacherPhone], 
+    [TeacherInfoDetail].[TeacherPhoto] AS [TeacherPhoto], 
+    [TeacherInfoDetail].[TeacherBio] AS [TeacherBio], 
+    [TeacherInfoDetail].[PackageName] AS [PackageName]
+    FROM [dbo].[TeacherInfoDetail] AS [TeacherInfoDetail]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_110" Association="Self.FK_110">
             <End Role="Package" EntitySet="Package" />
             <End Role="Mentor" EntitySet="Mentor" />
@@ -856,7 +887,25 @@
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="TeacherInfoDetails" EntityType="EducationProjectDbModel.TeacherInfoDetail" />
         </EntityContainer>
+        <EntityType Name="TeacherInfoDetail">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+            <PropertyRef Name="TeacherName" />
+            <PropertyRef Name="TeacherSurname" />
+            <PropertyRef Name="TeacherEmail" />
+            <PropertyRef Name="PackageName" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherSurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherBio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1027,6 +1076,20 @@
               <MappingFragment StoreEntitySet="UserType">
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherInfoDetails">
+            <EntityTypeMapping TypeName="EducationProjectDbModel.TeacherInfoDetail">
+              <MappingFragment StoreEntitySet="TeacherInfoDetail">
+                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="TeacherBio" ColumnName="TeacherBio" />
+                <ScalarProperty Name="TeacherPhoto" ColumnName="TeacherPhoto" />
+                <ScalarProperty Name="TeacherPhone" ColumnName="TeacherPhone" />
+                <ScalarProperty Name="TeacherEmail" ColumnName="TeacherEmail" />
+                <ScalarProperty Name="TeacherSurname" ColumnName="TeacherSurname" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
